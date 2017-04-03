@@ -1,0 +1,46 @@
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JATC669 TXT MSG</title>
+    <meta name="description" content="">
+  
+  </head>
+  <body>
+    <h1>Fill out this form if you want to get txts from the JACT</h1>
+    <form>
+      <label>Last Name</label><br>
+      <input type="text" name="lname"    id="lname"    value=" "><br>
+      <label>First Name</label><br>
+      <input type="text" name="fname"    id="fname"    value=" "><br>
+      <label>Student ID #</label><br> 
+      <input type="text" name="stuIdNum" id="stuIdNum" value=" "><br>
+      <label>Check Box</label><br>
+      <input type="checkbox" name="confirm" id="confirm"><span>Yes I want to get TXTs from the JATC</span><br>
+      <input type="submit" value="submit" onclick="sendEmail(lname, fname, stuIdNum, confirm)">
+    </form>
+
+    <script type="text/javascript">
+      function sendEmail(a,b,c,d) {
+        
+        if (a.value === " " || b.value === " " || c.value === " ") {
+          alert("fill out the form")
+        }
+
+        else if (document.getElementById('confirm').checked === false) {
+          alert("not checked")
+        }
+
+        else {
+          var subject = a.value + " " + b.value + " " + c.value;
+          window.open('mailto:cacollins@wccnet.edu?subject=TXT MSG OPT IN: ' + c.value +'&body=I, ' + b.value + a.value + ' (' + c.value + ') would like to received text messages from the JATC regarding my classes.');
+          window.open('confirm.html');
+        }
+        
+      }
+    </script>
+
+  </body>
+</html>
