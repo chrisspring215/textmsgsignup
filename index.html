@@ -4,43 +4,64 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>JATC669 TXT MSG</title>
+    <title>JATC-669 TXT MSG</title>
     <meta name="description" content="">
+    <link rel="stylesheet" href="css/main.css">
   
   </head>
   <body>
-    <h1>Fill out this form if you want to get txts from the JACT</h1>
-    <form>
-      <label>Last Name</label><br>
-      <input type="text" name="lname"    id="lname"    value=" "><br>
-      <label>First Name</label><br>
-      <input type="text" name="fname"    id="fname"    value=" "><br>
-      <label>Student ID #</label><br> 
-      <input type="text" name="stuIdNum" id="stuIdNum" value=" "><br>
-      <label>Check Box</label><br>
-      <input type="checkbox" name="confirm" id="confirm"><span>Yes I want to get TXTs from the JATC</span><br>
-      <input type="submit" value="submit" onclick="sendEmail(lname, fname, stuIdNum, confirm)">
-    </form>
+    <div id="body" class="main-container">
+      <div>
+        <img src="img/jatc-669-logo.png">
+      </div>
+      <h1>Fill out this form if you would like to receive text messages regarding your formal JATC-669 classes on your phone .</h1>
+      <form>
+        <label>First Name</label><br>
+        <input type="text" name="fname"    id="fname"    placeholder="first name" value=""><br>
+        <label>Last Name</label><br>
+        <input type="text" name="lname"    id="lname"    placeholder="last name" value=""><br>
+        <label>Where do you take classes</label><br> 
+        <select id="siteListField" name="location">
+          
+        </select><br>
+        <label>Phone Number</label><br> 
+        <input type="text" name="stuIdNum" id="stuIdNum" placeholder="000-000-0000" value=""><br>
+        <br>
+        <input type="checkbox" name="confirm" id="confirm"><span>&nbsp;Yes, I would like to receive text message updates regarding my formal classes.<br>I understand that <strong>STANDARD DATA FEES AND TEXT MESSAGING RATES MAY APPLY BASED ON YOUR PLAN WITH YOUR MOBILE PHONE CARRIER</strong>.</span><br><br>
+        <input type="button" value="SUBMIT" onclick="sendEmail(lname, fname, stuIdNum, confirm,location)">
+      </form>
+      <br>
+      <span>If you would like to be removed from this list, contact the JATC-669 at <a href="tel:+18006380592">(800)638-0592</a>.</span>
 
-    <script type="text/javascript">
-      function sendEmail(a,b,c,d) {
-        
-        if (a.value === " " || b.value === " " || c.value === " ") {
-          alert("fill out the form")
+      <script type="text/javascript">
+        function sendEmail(a,b,c,d,e) {
+          
+          if (a.value === " " || b.value === " " || c.value === " ") {
+            alert("Fill out all form fields")
+          }
+
+          else if (document.getElementById('confirm').checked === false) {
+            alert("Please click the check box")
+          }
+
+          else {
+            var subject = a.value + " " + b.value + " " + c.value;
+            window.open('mailto:cacollins@wccnet.edu?subject=TXT MSG OPT IN: ' + c.value +'&body=I, ' + b.value + a.value + ' (' + c.value + ') would like to received text messages from the JATC regarding my classes in' + e);
+            document.getElementById('body').innerHTML = "Thanks, your request has been sent. You can close this window."
+          }
+          
         }
-
-        else if (document.getElementById('confirm').checked === false) {
-          alert("not checked")
+      </script>
+      <script>
+        var siteList = ['Anchorage, AK','Birmingham, AL','Bloomington, IL','Buffalo, NY','Cincinnati, OH','Columbus, OH','Delavan, WI','Denver, CO','Des Moines, IA','Elizabethtown, KY','Fresno, CA','Grand Prairie, TX','Hartford, CT','Houston, TX','Indianapolis, IN','Kaukauna, WI','Lanham, MD','Lansing, MI','Las Vegas, NV','Latham, NY','New Braunfels, TX','Newburgh, NY','Omaha, NE','Pennsville, NJ','Phoenix, AZ','Plymouth, IN','Rock Island, IL','Sacramento, CA','San Diego, CA','Sparks, NV','Spring Hill, TN','Syracuse, NY','Tualatin, OR','Whittier, CA','Youngstown, OH'];
+        var siteListField = document.getElementById('siteListField')
+        var siteOptionList = '';
+        for (var index = 0; index < siteList.length; index++) {
+          siteOptionList = siteOptionList + '<option>' + siteList[index] + '</option>';    
         }
+        siteListField.innerHTML = siteOptionList;
 
-        else {
-          var subject = a.value + " " + b.value + " " + c.value;
-          window.open('mailto:cacollins@wccnet.edu?subject=TXT MSG OPT IN: ' + c.value +'&body=I, ' + b.value + a.value + ' (' + c.value + ') would like to received text messages from the JATC regarding my classes.');
-          window.open('confirm.html');
-        }
-        
-      }
-    </script>
-
+      </script>
+    </div>
   </body>
 </html>
